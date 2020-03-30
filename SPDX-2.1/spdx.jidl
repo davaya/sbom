@@ -1,0 +1,41 @@
+
+SPDX-Document = Record {
+    1   SPDX                    SPDX-Info,                      // Document Creation Information
+    2   Package                 Package-Info,                   // Package Information
+    3   File                    File-Info,                      // File Information
+    4   Snippet                 Snippet-Info,                   // Snippet Information
+    5   Other-License           Other-License-Info optional,    // Other License Information
+    6   Relationships           Relationships-Info optional,    // Relationships
+    7   Annotations             Annotations-Info optional       // Annotations
+}
+
+SPDX-Info = Record {                                        // Document Creation Information
+    1   SPDX-Version            Version,                        // which version of SPDX?
+    2   Data-License            License,                        // data in document: CC0-1.0
+    3   SPDX-Identifier         String,                         // id of the document itself
+    4   Document-Name           String,
+    5   SPDX-Doc-Namespace      URI,                            // URI
+    6   External-Doc-Ref        URI optional,
+    7   License-List-Version    Version optional,               // when document created
+    8   Creator                 Creator,                        // how was the file created? \n* Manual review (who, when) \n* Tool (id, version, when)
+    9   Created                 Date,                           // when?
+   10   Creator-Comment         String optional,                // comments on creator?
+   11   Document-Comment        String optional                 // comments on this document
+}
+
+Package-Info = Record {                                         // Package Information
+    1   Package-Name            String,                         // formal name by originator
+      ...
+}
+
+Version = String
+URI = String /uri
+Creator = String                    // Should this be a structure (how, review, tool, when)?
+Date = String /date
+
+License = Enumerated {
+    1   0BSD,                       // BSD Zero Clause License
+    2   AAL,                        // Attribution Assurance License
+    3   ADSL,                       // Amazon Digital Services License
+       ... and 400+ more
+}
