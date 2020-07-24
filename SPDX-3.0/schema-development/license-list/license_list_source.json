@@ -1,0 +1,171 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://spdx.org/license-list/v3.0",
+  "title": "",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "licenselist": {
+      "$ref": "#/definitions/LicenseList"
+    },
+    "exceptionlist": {
+      "$ref": "#/definitions/ExceptionList"
+    }
+  },
+  "definitions": {
+    "LicenseList": {
+      "title": "LicenseList",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "licenseListVersion",
+        "releaseDate",
+        "licenses"
+      ],
+      "properties": {
+        "licenseListVersion": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/Date",
+          "description": ""
+        },
+        "licenses": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/License",
+            "description": ""
+          }
+        }
+      }
+    },
+    "ExceptionList": {
+      "title": "ExceptionList",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "licenseListVersion",
+        "releaseDate",
+        "exceptions"
+      ],
+      "properties": {
+        "licenseListVersion": {
+          "type": "string"
+        },
+        "releaseDate": {
+          "$ref": "#/definitions/Date",
+          "description": ""
+        },
+        "exceptions": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Exception",
+            "description": ""
+          }
+        }
+      }
+    },
+    "License": {
+      "title": "License",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "isDeprecatedLicenseId",
+        "detailsUrl",
+        "referenceNumber",
+        "name",
+        "licenseId",
+        "seeAlso",
+        "isOsiApproved"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "isDeprecatedLicenseId": {
+          "type": "boolean"
+        },
+        "detailsUrl": {
+          "$ref": "#/definitions/URL",
+          "description": ""
+        },
+        "referenceNumber": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "licenseId": {
+          "type": "string"
+        },
+        "seeAlso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/URL"
+          }
+        },
+        "isOsiApproved": {
+          "type": "boolean"
+        },
+        "isFsfLibre": {
+          "type": "boolean"
+        }
+      }
+    },
+    "Exception": {
+      "title": "Exception",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reference",
+        "isDeprecatedLicenseId",
+        "detailsUrl",
+        "referenceNumber",
+        "name",
+        "seeAlso",
+        "licenseExceptionId"
+      ],
+      "properties": {
+        "reference": {
+          "type": "string"
+        },
+        "isDeprecatedLicenseId": {
+          "type": "boolean"
+        },
+        "detailsUrl": {
+          "$ref": "#/definitions/URL",
+          "description": ""
+        },
+        "referenceNumber": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "seeAlso": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/URL"
+          }
+        },
+        "licenseExceptionId": {
+          "type": "string"
+        }
+      }
+    },
+    "Date": {
+      "title": "Date",
+      "type": "string"
+    },
+    "URL": {
+      "title": "URL",
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

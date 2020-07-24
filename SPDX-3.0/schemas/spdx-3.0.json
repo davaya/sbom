@@ -1,0 +1,475 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "http://spdx.org/spdx/v3.0",
+  "title": "",
+  "$ref": "#/definitions/SpdxElement",
+  "definitions": {
+    "SpdxElement": {
+      "title": "SpdxElement",
+      "type": "object",
+      "description": "Designate root type(s) in exports",
+      "additionalProperties": false,
+      "required": [
+        "SPDXID",
+        "Content"
+      ],
+      "properties": {
+        "SPDXID": {
+          "$ref": "#/imports/st/IdString",
+          "description": "Use stubs for types not defined on diagram"
+        },
+        "Content": {
+          "$ref": "#/definitions/SpdxElementContent",
+          "description": "Inbound open arrows indicate unnamed OneOf (Choice)"
+        },
+        "SPDXREF": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Annotation",
+            "description": ""
+          }
+        },
+        "To": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Relationship",
+            "description": ""
+          }
+        },
+        "From": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Relationship",
+            "description": ""
+          }
+        }
+      }
+    },
+    "SpdxElementContent": {
+      "title": "SpdxElementContent",
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "SpdxDocument": {
+          "$ref": "#/definitions/SpdxDocument",
+          "description": ""
+        },
+        "Identity": {
+          "$ref": "#/definitions/Identity",
+          "description": ""
+        },
+        "Artifact": {
+          "$ref": "#/definitions/Artifact",
+          "description": ""
+        }
+      }
+    },
+    "SpdxDocument": {
+      "title": "SpdxDocument",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "SPDXVersion",
+        "DataLicense",
+        "Name",
+        "Namespace",
+        "Created",
+        "Creator"
+      ],
+      "properties": {
+        "SPDXVersion": {
+          "$ref": "#/imports/st/SPDXVersion",
+          "description": "Make up a source for anything not defined on diagram"
+        },
+        "DataLicense": {
+          "$ref": "#/imports/st/LicenseExpression",
+          "description": ""
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Namespace": {
+          "$ref": "#/definitions/URI",
+          "description": ""
+        },
+        "Created": {
+          "$ref": "#/imports/st/DateTime",
+          "description": ""
+        },
+        "Creator": {
+          "type": "array",
+          "description": "??? Diagram says 1..* but singular name implies 1..1",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Identity",
+            "description": "??? Diagram says 1..* but singular name implies 1..1"
+          }
+        },
+        "ExternalDocumentReferences": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/ExternalDocumentReference",
+            "description": ""
+          }
+        }
+      }
+    },
+    "Annotation": {
+      "title": "Annotation",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Date",
+        "Type",
+        "Comment",
+        "Annotator"
+      ],
+      "properties": {
+        "Date": {
+          "$ref": "#/imports/st/DateTime",
+          "description": ""
+        },
+        "Type": {
+          "$ref": "#/definitions/AnnotationType",
+          "description": "Not defined - make up an Enumeration"
+        },
+        "Comment": {
+          "type": "string"
+        },
+        "Annotator": {
+          "$ref": "#/definitions/Identity",
+          "description": ""
+        }
+      }
+    },
+    "AnnotationType": {
+      "title": "AnnotationType",
+      "type": "string",
+      "enum": []
+    },
+    "Relationship": {
+      "title": "Relationship",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Type",
+        "Comment"
+      ],
+      "properties": {
+        "Type": {
+          "$ref": "#/imports/st/RelationshipType",
+          "description": ""
+        },
+        "Comment": {
+          "type": "string"
+        }
+      }
+    },
+    "Identity": {
+      "title": "Identity",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Person": {
+          "$ref": "#/definitions/Person",
+          "description": "Use Discriminated union (as in SpdxElementContent, ArtifactContent) instead"
+        },
+        "Organization": {
+          "$ref": "#/definitions/Organization",
+          "description": ""
+        },
+        "Tool": {
+          "$ref": "#/definitions/Tool",
+          "description": ""
+        }
+      }
+    },
+    "Person": {
+      "title": "Person",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Email"
+      ],
+      "properties": {
+        "Email": {
+          "type": "string"
+        }
+      }
+    },
+    "Organization": {
+      "title": "Organization",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Email"
+      ],
+      "properties": {
+        "Email": {
+          "type": "string"
+        }
+      }
+    },
+    "Tool": {
+      "title": "Tool",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Version"
+      ],
+      "properties": {
+        "Version": {
+          "type": "string"
+        }
+      }
+    },
+    "Artifact": {
+      "title": "Artifact",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Name",
+        "Summary",
+        "Description",
+        "Content"
+      ],
+      "properties": {
+        "Name": {
+          "type": "string"
+        },
+        "Summary": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Originator": {
+          "$ref": "#/definitions/Identity",
+          "description": ""
+        },
+        "Supplier": {
+          "$ref": "#/definitions/Identity",
+          "description": ""
+        },
+        "Checksums": {
+          "type": "array",
+          "description": "Diagram says checksum - should be plural?  Define as Hashes Map?",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Hash",
+            "description": "Diagram says checksum - should be plural?  Define as Hashes Map?"
+          }
+        },
+        "ExternalReferences": {
+          "type": "array",
+          "description": "",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/ExternalReference",
+            "description": ""
+          }
+        },
+        "Content": {
+          "$ref": "#/definitions/ArtifactContent",
+          "description": ""
+        }
+      }
+    },
+    "Hash": {
+      "title": "Hash",
+      "type": "object",
+      "description": "Use MapOf {alg1: val1, alg2: val2}? or leave as Array of Records [{\"Algorithm\": alg, \"Value\": val}]?",
+      "additionalProperties": false,
+      "required": [
+        "Algorithm",
+        "Value"
+      ],
+      "properties": {
+        "Algorithm": {
+          "$ref": "#/imports/st/HashAlgorithm",
+          "description": ""
+        },
+        "Value": {
+          "type": "string",
+          "description": "Type is Binary, represented as Base64 or Hex string"
+        }
+      }
+    },
+    "ExternalDocumentReference": {
+      "title": "ExternalDocumentReference",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "DocumentRef",
+        "Locator"
+      ],
+      "properties": {
+        "DocumentRef": {
+          "$ref": "#/imports/st/IdString",
+          "description": ""
+        },
+        "Locator": {
+          "$ref": "#/definitions/URI",
+          "description": ""
+        }
+      }
+    },
+    "ExternalReference": {
+      "title": "ExternalReference",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Category",
+        "Type",
+        "Locator",
+        "Comment"
+      ],
+      "properties": {
+        "Category": {
+          "type": "string",
+          "description": "Type is undefined in diagram - Enumerated?"
+        },
+        "Type": {
+          "type": "string",
+          "description": "Enumerated?"
+        },
+        "Locator": {
+          "$ref": "#/definitions/URI",
+          "description": ""
+        },
+        "Comment": {
+          "type": "string"
+        }
+      }
+    },
+    "ArtifactContent": {
+      "title": "ArtifactContent",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Package",
+        "File",
+        "Snippet"
+      ],
+      "properties": {
+        "Package": {
+          "$ref": "#/definitions/Package",
+          "description": ""
+        },
+        "File": {
+          "$ref": "#/definitions/File",
+          "description": ""
+        },
+        "Snippet": {
+          "$ref": "#/definitions/Snippet",
+          "description": ""
+        }
+      }
+    },
+    "Package": {
+      "title": "Package",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Version",
+        "FromFile"
+      ],
+      "properties": {
+        "Version": {
+          "type": "string"
+        },
+        "FromFile": {
+          "$ref": "#/definitions/File",
+          "description": ""
+        }
+      }
+    },
+    "File": {
+      "title": "File",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "Type"
+      ],
+      "properties": {
+        "Type": {
+          "$ref": "#/imports/st/FileType",
+          "description": ""
+        }
+      }
+    },
+    "Snippet": {
+      "title": "Snippet",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ByteRange",
+        "LineRange",
+        "FromFile"
+      ],
+      "properties": {
+        "ByteRange": {
+          "$ref": "#/imports/st/PositiveIntegerRange",
+          "description": "optional or choice or both required?"
+        },
+        "LineRange": {
+          "$ref": "#/imports/st/PositiveIntegerRange",
+          "description": ""
+        },
+        "FromFile": {
+          "$ref": "#/definitions/File",
+          "description": ""
+        }
+      }
+    },
+    "URI": {
+      "title": "URI",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "imports": {
+    "st": {
+      "IdString": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/IdString"
+      },
+      "SPDXVersion": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/SPDXVersion"
+      },
+      "LicenseExpression": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/LicenseExpression"
+      },
+      "DateTime": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/DateTime"
+      },
+      "RelationshipType": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/RelationshipType"
+      },
+      "HashAlgorithm": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/HashAlgorithm"
+      },
+      "FileType": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/FileType"
+      },
+      "PositiveIntegerRange": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/PositiveIntegerRange"
+      }
+    }
+  }
+}
