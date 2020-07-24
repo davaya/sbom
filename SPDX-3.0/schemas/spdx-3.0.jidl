@@ -7,7 +7,7 @@ SpdxElement = Record                                 // Designate root type(s) i
    1 SPDXID               st:IdString                  // Use stubs for types not defined on diagram
    2 Content              SpdxElementContent           // Inbound open arrows indicate unnamed OneOf (Choice)
    3 SPDXREF              Annotation [0..*]            
-   4 To                   Relationship [0..*]          
+   4 To                   Relationship [0..*]          // Needs more info - can't do a join on instance ID
    5 From                 Relationship [0..*]          
 
 SpdxElementContent = Choice                          

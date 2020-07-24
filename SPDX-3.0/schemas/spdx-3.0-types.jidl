@@ -7,9 +7,9 @@ DateTime = String                                    // RFC 3339?  or anything?
 FileType = String                                    // Enumerated types?
 
 Hash = Choice                                        // Friendly hash structure
-   1 MD5                  Binary{16..16}               
-   2 SHA1                 Binary{20..20}               
-   3 SHA256               Binary{32..32}               
+   1 MD5                  Binary{16..16} /x          // Default string is Base64url
+   2 SHA1                 Binary{20..20} /x          // Use /x for Base16
+   3 SHA256               Binary{32..32} /x
 
 HashAlgorithm = Enumerated(Enum[Hash])               // For UnFriendly structure (repeating variable names "Algorithm" & "Value")
 
