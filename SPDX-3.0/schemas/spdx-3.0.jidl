@@ -3,93 +3,93 @@
      exports: ["SpdxElement"]
      comment: "Translated literally from SPDX Base design diagram, Jul 22, 2020"
 
-SpdxElement = Record                            // Designate root type(s) in exports
-   1 SPDXID       st:IdString                     // Use stubs for types not defined on diagram
-   2 Content      SpdxElementContent              // Inbound open arrows indicate unnamed OneOf (Choice)
-   3 SPDXREF      Annotation [0..*]               
-   4 To           Relationship [0..*]             
-   5 From         Relationship [0..*]             
+SpdxElement = Record                                 // Designate root type(s) in exports
+   1 SPDXID               st:IdString                  // Use stubs for types not defined on diagram
+   2 Content              SpdxElementContent           // Inbound open arrows indicate unnamed OneOf (Choice)
+   3 SPDXREF              Annotation [0..*]            
+   4 To                   Relationship [0..*]          
+   5 From                 Relationship [0..*]          
 
-SpdxElementContent = Choice                     
-   1 SpdxDocument SpdxDocument                    
-   2 Identity     Identity                        
-   3 Artifact     Artifact                        
+SpdxElementContent = Choice                          
+   1 SpdxDocument         SpdxDocument                 
+   2 Identity             Identity                     
+   3 Artifact             Artifact                     
 
-SpdxDocument = Record                           
-   1 SPDXVersion  st:SPDXVersion                  // Make up a source for anything not defined on diagram
-   2 DataLicense  st:LicenseExpression            
-   3 Name         String                          
-   4 Namespace    URI                             
-   5 Created      st:DateTime                     
-   6 Creator      Identity [1..*]                 // ??? Diagram says 1..* but singular name implies 1..1
+SpdxDocument = Record                                
+   1 SPDXVersion          st:SPDXVersion               // Make up a source for anything not defined on diagram
+   2 DataLicense          st:LicenseExpression         
+   3 Name                 String                       
+   4 Namespace            URI                          
+   5 Created              st:DateTime                  
+   6 Creator              Identity [1..*]              // ??? Diagram says 1..* but singular name implies 1..1
    7 ExternalDocumentReferences ExternalDocumentReference [0..*]
 
-Annotation = Record                             
-   1 Date         st:DateTime                     
-   2 Type         AnnotationType                  // Not defined - make up an Enumeration
-   3 Comment      String                          
-   4 Annotator    Identity                        
+Annotation = Record                                  
+   1 Date                 st:DateTime                  
+   2 Type                 AnnotationType               // Not defined - make up an Enumeration
+   3 Comment              String                       
+   4 Annotator            Identity                     
 
-AnnotationType = Enumerated                     
+AnnotationType = Enumerated                          
 
-Relationship = Record                           
-   1 Type         st:RelationshipType             
-   2 Comment      String                          
+Relationship = Record                                
+   1 Type                 st:RelationshipType          
+   2 Comment              String                       
 
-Identity = Record                               
-   1 Name         String                          
-   2 Person       Person optional                 // Use Discriminated union (as in SpdxElementContent, ArtifactContent) instead
-   3 Organization Organization optional           
-   4 Tool         Tool optional                   
+Identity = Record                                    
+   1 Name                 String                       
+   2 Person               Person optional              // Use Discriminated union (as in SpdxElementContent, ArtifactContent) instead
+   3 Organization         Organization optional        
+   4 Tool                 Tool optional                
 
-Person = Record                                 
-   1 Email        String                          
+Person = Record                                      
+   1 Email                String                       
 
-Organization = Record                           
-   1 Email        String                          
+Organization = Record                                
+   1 Email                String                       
 
-Tool = Record                                   
-   1 Version      String                          
+Tool = Record                                        
+   1 Version              String                       
 
-Artifact = Record                               
-   1 Name         String                          
-   2 Summary      String                          
-   3 Description  String                          
-   4 Originator   Identity optional               
-   5 Supplier     Identity optional               
-   6 Checksums    Hash [0..*]                     // Diagram says checksum - should be plural?  Define as Hashes Map?
-   7 ExternalReferences ExternalReference [0..*]  
-   8 Content      ArtifactContent                 
+Artifact = Record                                    
+   1 Name                 String                       
+   2 Summary              String                       
+   3 Description          String                       
+   4 Originator           Identity optional            
+   5 Supplier             Identity optional            
+   6 Checksums            Hash [0..*]                  // Diagram says checksum - should be plural?  Define as Hashes Map?
+   7 ExternalReferences   ExternalReference [0..*]     
+   8 Content              ArtifactContent              
 
-Hash = Record                                   // Use MapOf {alg1: val1, alg2: val2}? or leave as Array of Records [{"Algorithm": alg, "Value": val}]?
-   1 Algorithm    st:HashAlgorithm                
-   2 Value        String                          // Type is Binary, represented as Base64 or Hex string
+Hash = Record                                        // Use MapOf {alg1: val1, alg2: val2}? or leave as Array of Records [{"Algorithm": alg, "Value": val}]?
+   1 Algorithm            st:HashAlgorithm             
+   2 Value                String                       // Type is Binary, represented as Base64 or Hex string
 
-ExternalDocumentReference = Record              
-   1 DocumentRef  st:IdString                     
-   2 Locator      URI                             
+ExternalDocumentReference = Record                   
+   1 DocumentRef          st:IdString                  
+   2 Locator              URI                          
 
-ExternalReference = Record                      
-   1 Category     String                          // Type is undefined in diagram - Enumerated?
-   2 Type         String                          // Enumerated?
-   3 Locator      URI                             
-   4 Comment      String                          
+ExternalReference = Record                           
+   1 Category             String                       // Type is undefined in diagram - Enumerated?
+   2 Type                 String                       // Enumerated?
+   3 Locator              URI                          
+   4 Comment              String                       
 
-ArtifactContent = Record                        
-   1 Package      Package                         
-   2 File         File                            
-   3 Snippet      Snippet                         
+ArtifactContent = Record                             
+   1 Package              Package                      
+   2 File                 File                         
+   3 Snippet              Snippet                      
 
-Package = Record                                
-   1 Version      String                          
-   2 FromFile     File                            
+Package = Record                                     
+   1 Version              String                       
+   2 FromFile             File                         
 
-File = Record                                   
-   1 Type         st:FileType                     
+File = Record                                        
+   1 Type                 st:FileType                  
 
-Snippet = Record                                
-   1 ByteRange    st:PositiveIntegerRange         // optional or choice or both required?
-   2 LineRange    st:PositiveIntegerRange         
-   3 FromFile     File                            
+Snippet = Record                                     
+   1 ByteRange            st:PositiveIntegerRange      // optional or choice or both required?
+   2 LineRange            st:PositiveIntegerRange      
+   3 FromFile             File                         
 
-URI = String /uri                               
+URI = String /uri                                    
