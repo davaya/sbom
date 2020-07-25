@@ -61,7 +61,7 @@ Artifact = Record
    7 ExternalReferences   ExternalReference [0..*]
    8 Content              ArtifactContent
 
-Hash = Record                                        // Use MapOf {alg1: val1, alg2: val2}? or leave as Array of Records [{"Algorithm": alg, "Value": val}]?
+Hash = Record                                        // Use Map {alg1: val1, alg2: val2}? or leave as Array of Records [{"Algorithm": alg, "Value": val}]?
    1 Algorithm            st:HashAlgorithm
    2 Value                String                       // Type is Binary, represented as Base64 or Hex string
 

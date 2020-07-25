@@ -45,3 +45,18 @@ AnnotationType or IdString so that they can be defined somewhere.
 calls "Grotesque" or "UnFriendly" style in which the literal property strings "Algorithm"
 and "Value" appear in the data, as opposed to "Friendly" styles where the properties are algorithm name and
 hash value directly.  We may want to consider using friendly definitions, for the reasons given in the slides.
+
+### Data
+
+* [schemas](schemas) contains three source Information Model modules plus the resulting concrete schema for JSON.
+Concrete schemas for additional data formats (e.g., XSD, CDDL) to follow.
+    * spdx-3.0.jidl - information model derived from the diagram
+    * spdx-3.0-types.jidl - information referenced by, but not defined in, the diagram
+    * spdx-license-enums-\<version\>.jidl - LicenseList and ExceptionList enumerations extracted from the master list
+    * spdx-3.0.json - JSON Schema for SPDX documents constructed from the IM and its references
+
+* [tests](tests) will contain JSON examples of good and bad SPDX3 documents,
+to check correctness and completeness of the IM.  Additional data formats to follow.
+
+* [dev](dev) contains miscellaneous development code and data, including the license list module
+in various documentation formats.
