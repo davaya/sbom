@@ -1,36 +1,38 @@
-module: "http://spdx.org/license-list/v3.0"
-exports: ["LicenseList", "ExceptionList"]
+      module: "http://spdx.org/license-list/v3.0"
+     exports: ["LicenseList", "ExceptionList"]
 
 LicenseList = Record
-    1 licenseListVersion String
-    2 releaseDate Date
-    3 licenses License [1..*]
+   1 licenseListVersion   String
+   2 releaseDate          Date
+   3 licenses             License [1..*]
 
 ExceptionList = Record
-    1 licenseListVersion String
-    2 releaseDate Date
-    3 exceptions Exception [1..*]
+   1 licenseListVersion   String
+   2 releaseDate          Date
+   3 exceptions           Exception [1..*]
 
 License = Record
-    1 reference String
-    2 isDeprecatedLicenseId Boolean
-    3 detailsUrl URL
-    4 referenceNumber RefNumber
-    5 name String
-    6 licenseId String
-    7 seeAlso ArrayOf(URL)
-    8 isOsiApproved Boolean
-    9 isFsfLibre Boolean optional
+   1 reference            String
+   2 isDeprecatedLicenseId Boolean
+   3 detailsUrl           URL
+   4 referenceNumber      RefNumber
+   5 name                 String
+   6 licenseId            String
+   7 seeAlso              ArrayOf(URL)
+   8 isOsiApproved        Boolean
+   9 isFsfLibre           Boolean optional
 
 Exception = Record
-    1 reference String
-    2 isDeprecatedLicenseId Boolean
-    3 detailsUrl URL
-    4 referenceNumber RefNumber
-    5 name String
-    7 seeAlso ArrayOf(URL)
-    8 licenseExceptionId String
+   1 reference            String
+   2 isDeprecatedLicenseId Boolean
+   3 detailsUrl           URL
+   4 referenceNumber      RefNumber
+   5 name                 String
+   7 seeAlso              ArrayOf(URL)
+   8 licenseExceptionId   String
 
 Date = String
+
 URL = String /uri
+
 RefNumber = String (%^\d+$%)

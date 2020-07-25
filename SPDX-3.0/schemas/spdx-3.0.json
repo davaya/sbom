@@ -33,11 +33,11 @@
         },
         "To": {
           "type": "array",
-          "description": "",
+          "description": "Needs more info - can't do a join on instance ID",
           "minItems": 1,
           "items": {
             "$ref": "#/definitions/Relationship",
-            "description": ""
+            "description": "Needs more info - can't do a join on instance ID"
           }
         },
         "From": {

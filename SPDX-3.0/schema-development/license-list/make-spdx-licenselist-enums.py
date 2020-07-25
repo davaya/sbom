@@ -74,6 +74,6 @@ le_schema = {
 }
 
 print(f'{len(license_items)} licenses, {len(exception_items)} exceptions')
-fname = os.path.join('data', outfile + '-' + llversion + '.jadn')
+fname = os.path.join('data', f'{outfile}-{llversion}.jadn')
 with open(fname, 'w') as f:
     json.dump(le_schema, f)

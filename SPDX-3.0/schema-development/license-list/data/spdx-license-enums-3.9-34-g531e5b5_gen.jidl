@@ -4,7 +4,7 @@
      exports: ["LicenseList", "ExceptionList"]
       config: {"$MaxElements": 1000}
 
-LicenseList = Enumerated                             
+LicenseList = Enumerated
  250 0BSD                                              // BSD Zero Clause License
   63 AAL                                               // Attribution Assurance License
  227 ADSL                                              // Amazon Digital Services License
@@ -447,7 +447,7 @@ LicenseList = Enumerated
  104 xpp                                               // XPP License
  266 zlib-acknowledgement                              // zlib/libpng License with Acknowledgement
 
-ExceptionList = Enumerated                           
+ExceptionList = Enumerated
    1 GCC-exception-2.0                                 // GCC Runtime Library exception 2.0
    2 openvpn-openssl-exception                         // OpenVPN OpenSSL Exception
    3 Nokia-Qt-exception-1.1                            // Nokia Qt LGPL exception 1.1

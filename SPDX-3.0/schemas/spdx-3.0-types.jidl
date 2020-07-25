@@ -6,9 +6,9 @@ DateTime = String                                    // RFC 3339?  or anything?
 
 FileType = String                                    // Enumerated types?
 
-Hash = Choice                                        // Friendly hash structure
-   1 MD5                  Binary{16..16} /x          // Default string is Base64url
-   2 SHA1                 Binary{20..20} /x          // Use /x for Base16
+Hash = Map                                           // Friendly hash structure
+   1 MD5                  Binary{16..16} /x            // Default string is Base64url
+   2 SHA1                 Binary{20..20} /x            // Use /x for Base16
    3 SHA256               Binary{32..32} /x
 
 HashAlgorithm = Enumerated(Enum[Hash])               // For UnFriendly structure (repeating variable names "Algorithm" & "Value")
@@ -16,13 +16,13 @@ HashAlgorithm = Enumerated(Enum[Hash])               // For UnFriendly structure
 IdString = String                                    // Any string or regex?
 
 LicenseExpression = Record                           // guess at a structure that uses license-enums
-   1 licenseId            ll:LicenseList               
-   2 exceptionId          ll:ExceptionList             
+   1 licenseId            ll:LicenseList
+   2 exceptionId          ll:ExceptionList
 
 PositiveIntegerRange = Array                         // guess from name
    1  Integer{0..*}                                    // low:: lower limit inclusive
    2  Integer{0..*}                                    // high:: upper limit inclusive
 
-RelationshipType = Enumerated                        
+RelationshipType = Enumerated
 
-SPDXVersion = String                                 
+SPDXVersion = String
