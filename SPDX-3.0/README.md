@@ -41,6 +41,7 @@ rather than interpreting Identity as properties of Person and Organization and T
 AnnotationType or IdString so that they can be defined somewhere.
 
 * Hash is shown as an entity with two properties named "Algorithm" and "Value".  This is an example of what
-[W3C Transformations] calls "Grotesque" or "UnFriendly" style in which the literal property strings "Algorithm"
+[W3C Transformations](https://www.w3.org/2011/10/integration-workshop/s/ExperienceswithJSONandXMLTransformations.v08.pdf)
+calls "Grotesque" or "UnFriendly" style in which the literal property strings "Algorithm"
 and "Value" appear in the data, as opposed to "Friendly" styles where the properties are algorithm name and
 hash value directly.  We may want to consider using friendly definitions, for the reasons given in the slides.
