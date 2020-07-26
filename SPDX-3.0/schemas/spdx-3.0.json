@@ -269,11 +269,11 @@
         },
         "Checksums": {
           "type": "array",
-          "description": "Diagram says checksum - should be plural?  Define as Hashes Map?",
+          "description": "Use Hash (friendly) or Hash2 (as shown in diagram)",
           "minItems": 1,
           "items": {
-            "$ref": "#/definitions/Hash",
-            "description": "Diagram says checksum - should be plural?  Define as Hashes Map?"
+            "$ref": "#/imports/st/Hash",
+            "description": "Use Hash (friendly) or Hash2 (as shown in diagram)"
           }
         },
         "ExternalReferences": {
@@ -288,26 +288,6 @@
         "Content": {
           "$ref": "#/definitions/ArtifactContent",
           "description": ""
-        }
-      }
-    },
-    "Hash": {
-      "title": "Hash",
-      "type": "object",
-      "description": "Use MapOf {alg1: val1, alg2: val2}? or leave as Array of Records [{\"Algorithm\": alg, \"Value\": val}]?",
-      "additionalProperties": false,
-      "required": [
-        "Algorithm",
-        "Value"
-      ],
-      "properties": {
-        "Algorithm": {
-          "$ref": "#/imports/st/HashAlgorithm",
-          "description": ""
-        },
-        "Value": {
-          "type": "string",
-          "description": "Type is Binary, represented as Base64 or Hex string"
         }
       }
     },
@@ -461,8 +441,8 @@
       "RelationshipType": {
         "$ref": "http://spdx.org/types/v3.0/definitions/RelationshipType"
       },
-      "HashAlgorithm": {
-        "$ref": "http://spdx.org/types/v3.0/definitions/HashAlgorithm"
+      "Hash": {
+        "$ref": "http://spdx.org/types/v3.0/definitions/Hash"
       },
       "FileType": {
         "$ref": "http://spdx.org/types/v3.0/definitions/FileType"
