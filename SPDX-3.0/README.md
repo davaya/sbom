@@ -53,7 +53,7 @@ Concrete schemas for additional data formats (e.g., XSD, CDDL) to follow.
     * spdx-3.0.jidl - information model derived from the diagram
     * spdx-3.0-types.jidl - information referenced by, but not defined in, the diagram
     * spdx-license-enums-\<version\>.jidl - LicenseList and ExceptionList enumerations extracted from the master list
-    * spdx-3.0.json - JSON Schema for SPDX documents constructed from the IM and its references
+    * spdx-3.0_resolved.json - Complete JSON Schema for SPDX documents. Constructed from the IM and its references
 
 * [tests](tests) will contain JSON examples of good and bad SPDX3 documents,
 to check correctness and completeness of the IM.  Additional data formats to follow.

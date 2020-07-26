@@ -1,12 +1,13 @@
       module: "http://spdx.org/types/v3.0"
      imports: {"ll": "http://spdx.org/license-enums/v3.0"}
+      config: {"$FieldName": "^[a-zA-Z][_A-Za-z0-9]{0,31}$"}
      comment: "Types not shown on SPDX Base design diagram, Jul 22, 2020"
 
-DateTime = Integer /datetime                         // RFC 3339?
+DateTime = Integer                                   // RFC 3339? - use /datetime format
 
 FileType = String                                    // Enumerated types?
 
-Hash = Map                                           // ** Friendly ** hash structure
+Hash = Map                                           // ** Friendly ** hash structure: property name = algorithm
    1 MD5                  Binary{16..16} /x            // Default string representation is Base64url. Use /x for Base16
    2 SHA1                 Binary{20..20} /x
    3 SHA256               Binary{32..32} /x
@@ -17,8 +18,8 @@ HashVal = Choice                                     // Same as Hash except Choi
    3 SHA256               Binary{32..32} /x
 
 Hash2 = Record                                       // ** Unfriendly ** hash structure
-   1 Algorithm            Enumerated(Enum[HashVal])    // Explicit Algorithm property name
-   2 Value                HashVal(TagId[Algorithm])    // Explicit Value property name
+   1 Algorithm            Enumerated(Enum[HashVal])    // Explicit property name "Algorithm"
+   2 Value                HashVal(TagId[Algorithm])    // Explicit property name "Value"
 
 IdString = String                                    // Any string or regex?
 

@@ -1,6 +1,7 @@
       module: "http://spdx.org/spdx/v3.0"
      imports: {"st": "http://spdx.org/types/v3.0"}
      exports: ["SpdxElement"]
+      config: {"$MaxElements": 1000, "$FieldName": "^[a-zA-Z][_A-Za-z0-9]{0,31}$"}
      comment: "Translated literally from SPDX Base design diagram, Jul 22, 2020"
 
 SpdxElement = Record                                 // Designate root type(s) in exports
